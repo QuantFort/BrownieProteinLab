@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrownieProteinLab | Brownies Deliciosos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================
+       VARIABLES Y ESTILOS BASE
+       ========================================== */
+    :root {
+      --color-brown-dark: #3A2318;
+      --color-brown-medium: #6F4E37;
+      --color-cream-bg: #FDFBF7;
+      --color-cream-card: #F5EBE6;
+      --color-white: #FFFFFF;
+      --color-accent: #E85D04;
+      --color-accent-hover: #D00000;
+      
+      --shadow-soft: 0 10px 25px rgba(58, 35, 24, 0.08);
+      --shadow-hover: 0 15px 35px rgba(58, 35, 24, 0.15);
+      --radius-large: 20px;
+      --radius-small: 10px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--color-cream-bg);
+      color: var(--color-brown-dark);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 0;
+    }
+
+    /* Botón general */
+    .btn {
+      display: inline-block;
+      background-color: var(--color-accent);
+      color: var(--color-white);
+      padding: 0.85rem 2rem;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(232, 93, 4, 0.3);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: var(--color-accent-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(232, 93, 4, 0.4);
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      color: var(--color-brown-dark);
+    }
+
+    /* ==========================================
+       1. ENCABEZADO
+       ========================================== */
+    header {
+      background-color: var(--color-white);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--color-brown-dark);
+    }
+
+    .logo span {
+      color: var(--color-accent);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--color-accent);
+    }
+
+    /* ==========================================
+       2. INICIO (HERO)
+       ========================================== */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-brown-medium);
+      margin-bottom: 1rem;
+    }
+
+    .hero-text {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .hero-img img {
+      border-radius: var(--radius-large);
+      box-shadow: var(--shadow-soft);
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+    }
+
+    /* ==========================================
+       3. PRODUCTOS
+       ========================================== */
+    #productos {
+      background-color: var(--color-white);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background-color: var(--color-cream-bg);
+      border-radius: var(--radius-large);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ZONA EDITABLE: Precios */
+    .product-price {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--color-brown-dark);
+    }
+
+    .btn-small {
+      padding: 0.5rem 1.3rem;
+      font-size: 0.9rem;
+    }
+
+    /* ==========================================
+       4. NOSOTROS
+       ========================================== */
+    .about-card {
+      background-color: var(--color-cream-card);
+      border-radius: var(--radius-large);
+      padding: 3rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .about-card p {
+      font-size: 1.1rem;
+      color: var(--color-brown-dark);
+    }
+
+    /* ==========================================
+       5. CONTACTO
+       ========================================== */
+    #contacto {
+      background-color: var(--color-white);
+    }
+
+    .contact-container {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .contact-item {
+      background-color: var(--color-cream-bg);
+      padding: 1rem;
+      border-radius: var(--radius-small);
+      font-weight: 600;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .contact-item a {
+      color: var(--color-accent);
+    }
+
+    /* ==========================================
+       6. PIE DE PÁGINA
+       ========================================== */
+    footer {
+      background-color: var(--color-brown-dark);
+      color: var(--color-cream-bg);
+      text-align: center;
+      padding: 1.5rem 0;
+      font-size: 0.9rem;
+    }
+
+    /* ==========================================
+       DISEÑO RESPONSIVE (MÓVIL)
+       ========================================== */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-img img {
+        height: 280px;
+      }
+
+      .about-card {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. ENCABEZADO -->
+  <header>
+    <nav>
+      <div class="logo">Brownie<span>ProteinLab</span></div>
+      <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 2. INICIO -->
+    <section id="inicio" class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1>BrownieProteinLab</h1>
+          <p class="hero-subtitle">Brownies deliciosos para disfrutar</p>
+          <p class="hero-text">
+            Postres artesanales hechos con ingredientes premium y el balance perfecto de proteína. La mejor opción para darte un gusto sin remordimientos.
+          </p>
+          <a href="#productos" class="btn">Ver productos</a>
+        </div>
+        <div class="hero-img">
+          <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80" alt="Brownies BrownieProteinLab">
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PRODUCTOS -->
+    <section id="productos">
+      <div class="container">
+        <h2 class="section-title">Nuestros Productos</h2>
+        <div class="products-grid">
+
+          <!-- Tarjeta 1 -->
+          <article class="product-card">
+            <img src="https://images.unsplash.com/photo-1564355808539-22fda35bed7e?auto=format&fit=crop&w=500&q=80" alt="Brownie Clásico" class="product-img">
+            <div class="product-info">
+              <h3 class="product-name">Brownie Clásico</h3>
+              <p class="product-desc">Textura suave y húmeda por dentro, con una fina capa crujiente por fuera.</p>
+              <div class="product-bottom">
+                <!-- PRECIO EDITABLE -->
+                <span class="product-price">$3.50</span>
+                <!-- ENLACE DE WHATSAPP EDITABLE POR PRODUCTO -->
+                <a href="https://wa.me/51999999999?text=Hola,%20quiero%20pedir%20un%20Brownie%20Clásico" target="_blank" class="btn btn-small">Pedir</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tarjeta 2 -->
+          <article class="product-card">
+            <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=500&q=80" alt="Brownie de Chocolate" class="product-img">
+            <div class="product-info">
+              <h3 class="product-name">Brownie de Chocolate</h3>
+              <p class="product-desc">Cargado con trozos de chocolate oscuro 70% cacao y extra proteína.</p>
+              <div class="product-bottom">
+                <!-- PRECIO EDITABLE -->
+                <span class="product-price">$4.00</span>
+                <!-- ENLACE DE WHATSAPP EDITABLE POR PRODUCTO -->
+                <a href="https://wa.me/51999999999?text=Hola,%20quiero%20pedir%20un%20Brownie%20de%20Chocolate" target="_blank" class="btn btn-small">Pedir</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tarjeta 3 -->
+          <article class="product-card">
+            <img src="https://images.unsplash.com/photo-1621236378699-8597faf6a176?auto=format&fit=crop&w=500&q=80" alt="Brownie Especial" class="product-img">
+            <div class="product-info">
+              <h3 class="product-name">Brownie Especial</h3>
+              <p class="product-desc">Topping de crema de maní natural y trozos de nueces seleccionadas.</p>
+              <div class="product-bottom">
+                <!-- PRECIO EDITABLE -->
+                <span class="product-price">$4.50</span>
+                <!-- ENLACE DE WHATSAPP EDITABLE POR PRODUCTO -->
+                <a href="https://wa.me/51999999999?text=Hola,%20quiero%20pedir%20un%20Brownie%20Especial" target="_blank" class="btn btn-small">Pedir</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. NOSOTROS -->
+    <section id="nosotros" class="container">
+      <h2 class="section-title">Sobre Nosotros</h2>
+      <div class="about-card">
+        <p>
+          En <strong>BrownieProteinLab</strong> creamos postres para quienes buscan disfrutar sin culpa. Somos un emprendimiento dedicado a elaborar brownies deliciosos, de excelente presentación y enriquecidos con proteína de alta calidad. Cada uno de nuestros productos está preparado de forma artesanal para asegurar el mejor sabor en cada bocado.
+        </p>
+      </div>
+    </section>
+
+    <!-- 5. CONTACTO -->
+    <section id="contacto">
+      <div class="container contact-container">
+        <h2 class="section-title">Contacto</h2>
+        <p>¡Haz tu pedido directo o consúltanos cualquier duda!</p>
+        
+        <div class="contact-list">
+          <div class="contact-item">
+            💬 WhatsApp: <a href="https://wa.me/51999999999" target="_blank">+51 999 999 999</a>
+          </div>
+          <div class="contact-item">
+            📸 Instagram: <a href="https://instagram.com" target="_blank">@brownieproteinlab</a>
+          </div>
+          <div class="contact-item">
+            ✉️ Correo: hola@brownieproteinlab.com
+          </div>
+        </div>
+
+        <!-- ENLACE PRINCIPAL DE WHATSAPP EDITABLE -->
+        <a href="https://wa.me/51999999999?text=Hola,%20quiero%20hacer%20un%20pedido" target="_blank" class="btn">Haz tu pedido</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- 6. PIE DE PÁGINA -->
+  <footer>
+    <p>&copy; 2026 BrownieProteinLab</p>
+  </footer>
+
+</body>
+</html>
